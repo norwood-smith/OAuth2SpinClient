@@ -57,6 +57,7 @@ See https://github.com/markbates/goth/examples/main.go to see this in action.
 */
 func BeginAuthHandler(res http.ResponseWriter, req *http.Request) {
 	url, err := GetAuthURL(res, req)
+	fmt.Printf("BeginAuthHandler %s\n", url)
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintln(res, err)

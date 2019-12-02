@@ -79,6 +79,7 @@ func Test_BeginAuthHandler(t *testing.T) {
 	}
 
 	sessStr, ok := sess.Values["faux"].(string)
+	fmt.Printf("sess.Values %v\n", sess.Values)
 	if !ok {
 		t.Fatalf("Gothic session not stored as marshalled string; was %T (value %v)",
 			sess.Values["faux"], sess.Values["faux"])
@@ -88,6 +89,7 @@ func Test_BeginAuthHandler(t *testing.T) {
 		t.Fatalf("error unmarshalling faux Gothic session: %v", err)
 	}
 	au, _ := gothSession.GetAuthURL()
+	fmt.Printf("au %s\n", au)
 
 	a.Equal(http.StatusTemporaryRedirect, res.Code)
 	a.Contains(res.Body.String(),
